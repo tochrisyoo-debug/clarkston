@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>클락스톤 난민 선교 전략 보고서</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+<!-- Chosen Palette: Deep Blue (#1e3a8a), Bright Green (#10b981), Golden Yellow (#f59e0b), Slate Gray -->
+<!-- Application Structure Plan: The SPA uses a modern, scrolling dashboard layout. It begins with a high-impact Hero section setting the vision. Section 1 (Demographics) uses a dashboard approach with dynamic counters and a Chart.js doughnut chart to visualize the incredible density and diversity of the 1.1 sq mile area, establishing the 'Why'. Section 2 (Paradigm Shift) uses an interactive side-by-side comparison to clearly contrast traditional 'Going' missions with the new 'Coming' diaspora approach. Section 3 (Strategy) employs an interactive tabbed interface to break down the 3-step action plan into easily digestible phases without overwhelming the user. Section 4 (CTA) provides clear, actionable steps for churches to get involved. This structure logically guides the user from understanding the need to taking concrete action. -->
+<!-- Visualization & Content Choices: 
+     1. Key Stats: Goal -> Inform. Presentation -> Dynamic Number Counters (JS). Justification -> Creates immediate impact regarding the dense, diverse nature of Clarkston.
+     2. Origin Demographics: Goal -> Inform/Proportions. Presentation -> Chart.js Doughnut Chart. Justification -> Visually groups the 60+ countries into broader 10/40 window regions, demonstrating the unreached people group presence. Library -> Chart.js (NO SVG).
+     3. Mission Paradigm: Goal -> Compare. Presentation -> Interactive JS Toggle Cards. Justification -> Effectively contrasts the high barriers of traditional missions with the accessibility of Clarkston.
+     4. Action Strategy: Goal -> Organize/Process. Presentation -> Tabbed Content Area (HTML/JS). Justification -> Organizes the 3-stage plan logically. Confirming NO SVG or Mermaid JS used. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<style>
+body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color: #0f172a; }
+.chart-container { position: relative; width: 100%; max-width: 450px; margin-left: auto; margin-right: auto; height: 350px; max-height: 350px; }
+@media (min-width: 768px) { .chart-container { height: 400px; max-height: 400px; } }
+.glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+.gradient-text { background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+</style>
+</head>
+<body class="antialiased">
+
+<nav class="fixed top-0 w-full z-50 glass-card shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="font-black text-xl text-blue-900 tracking-tighter">🌐 Clarkston Mission</div>
+        <div class="hidden md:flex space-x-6 text-sm font-bold text-slate-600">
+            <a href="#intro" class="hover:text-green-600 transition">개요</a>
+            <a href="#demographics" class="hover:text-green-600 transition">인구 분석</a>
+            <a href="#paradigm" class="hover:text-green-600 transition">선교 패러다임</a>
+            <a href="#strategy" class="hover:text-green-600 transition">실행 전략</a>
+            <a href="#action" class="hover:text-green-600 transition">동참 안내</a>
+        </div>
+    </div>
+</nav>
+
+<header id="intro" class="pt-32 pb-20 px-4 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 text-white text-center">
+    <div class="max-w-4xl mx-auto">
+        <div class="inline-block px-4 py-1 rounded-full bg-green-500 text-white font-bold text-xs mb-6 tracking-widest">선교 전략 보고서</div>
+        <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">내 집 앞의 열방,<br><span class="text-yellow-400">클락스톤(Clarkston)</span> 난민 선교</h1>
+        <p class="text-lg md:text-2xl text-blue-100 font-light italic mb-2 break-keep">
+            "하나님께서 여권 및 비자 없이도 만날 수 있도록,<br class="hidden md:block">전 세계 미전도 종족을 우리 곁에 보내셨습니다."
+        </p>
+        <p class="text-sm md:text-base text-yellow-300 font-semibold mb-10 tracking-wide">
+            [연중 52주 상시 정기 선교 가동 중 & 매년 여름 단기 집중 사역 결합 모델]
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <a href="https://script.google.com/macros/s/AKfycby_dNhJeVP_KrVKtsTVYgSmXoSJbgVIFndfKRNJhfkMwtBaem3HLRcc-maCCj-2xpyUVw/exec" target="_blank" class="inline-block bg-yellow-400 hover:bg-yellow-300 text-blue-950 font-black py-4 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1">
+                ✍️ 선교 동역 신청서 작성하기
+            </a>
+            <a href="#demographics" class="inline-block bg-transparent border-2 border-white hover:bg-white hover:text-slate-900 text-white font-bold py-4 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1">
+                보고서 탐색 시작하기 ⬇️
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 py-16 space-y-24">
+
+    <section id="demographics" class="scroll-mt-24">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-black text-blue-900 mb-4">📍 1. 지리적·인구학적 분석의 기적</h2>
+            <div class="w-16 h-1 bg-green-500 mx-auto mb-6"></div>
+            <p class="text-lg text-slate-600 max-w-3xl mx-auto break-keep">
+                본 섹션은 왜 클락스톤이 미국 내에서 가장 독보적인 선교적 가치를 지니고 있는지 구체적인 데이터를 통해 증명합니다. 인구 밀집도와 출신 국가의 다양성을 시각화하여, 우리가 마주한 영적 기회의 거대한 규모를 이해하는 데 목적이 있습니다.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 text-center transform transition hover:scale-105">
+                <div class="text-5xl mb-4">🗺️</div>
+                <div class="text-4xl font-black text-blue-600 mb-2"><span class="counter" data-target="1.1">0</span> <span class="text-xl">sq.mi</span></div>
+                <div class="font-bold text-slate-800">초밀집 지역</div>
+                <p class="text-sm text-slate-500 mt-2">약 2.85km². 도보로 30분이면 가로지를 수 있는 아파트 중심의 고밀도 선교 거실입니다.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 text-center transform transition hover:scale-105">
+                <div class="text-5xl mb-4">🌍</div>
+                <div class="text-4xl font-black text-green-600 mb-2"><span class="counter" data-target="60">0</span>+ <span class="text-xl">개국</span></div>
+                <div class="font-bold text-slate-800">다양한 국적</div>
+                <p class="text-sm text-slate-500 mt-2">소말리아, 시리아, 아프가니스탄, 부탄 등 10/40 창의 미전도 종족들이 밀집해 있습니다.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 text-center transform transition hover:scale-105">
+                <div class="text-5xl mb-4">🗣️</div>
+                <div class="text-4xl font-black text-yellow-500 mb-2"><span class="counter" data-target="110">0</span>+ <span class="text-xl">언어</span></div>
+                <div class="font-bold text-slate-800">언어적 다양성</div>
+                <p class="text-sm text-slate-500 mt-2">미국에서 가장 다양성이 높은 평방마일이자 '남부의 엘리스 섬'이라 불립니다.</p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6 md:p-10 shadow-lg border border-slate-100 flex flex-col md:flex-row items-center gap-10">
+            <div class="w-full md:w-1/2">
+                <h3 class="text-2xl font-bold text-blue-900 mb-4">창의적 접근 지역(10/40 창)의 자발적 밀집</h3>
+                <p class="text-slate-600 mb-4 break-keep leading-relaxed">
+                    현대 선교에서 가장 복음을 전하기 어려운 지역의 주민들이 미국이라는 '종교의 자유가 보장된 안전지대'로 대거 이주해 왔습니다. 선교사를 파송하더라도 추방 위험이 큰 강력한 이슬람, 불교, 힌두교 국가의 영혼들을 만날 수 있는 선교적 골든타임입니다.
+                </p>
+                <ul class="space-y-3 mt-6">
+                    <li class="flex items-center"><span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-bold mr-3">이슬람권</span> 시리아, 이라크, 아프가니스탄, 소말리아</li>
+                    <li class="flex items-center"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-bold mr-3">불교/힌두권</span> 부탄, 네팔, 미얀마</li>
+                    <li class="flex items-center"><span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-bold mr-3">아프리카권</span> 수단, 콩고, 에리트레아</li>
+                </ul>
+            </div>
+            <div class="w-full md:w-1/2">
+                <div class="chart-container">
+                    <canvas id="regionChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="paradigm" class="scroll-mt-24">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-black text-blue-900 mb-4">🔄 2. 선교 패러다임의 위대한 전환</h2>
+            <div class="w-16 h-1 bg-green-500 mx-auto mb-6"></div>
+            <p class="text-lg text-slate-600 max-w-3xl mx-auto break-keep">
+                이 섹션은 전통적인 해외 파송 선교 방식(Going)과 클락스톤에서 이루어지는 디아스포라 생활권 선교(Coming)를 비교합니다. 사용자는 아래 카드를 클릭하여 역방향 선교가 지닌 압도적인 효율성과 관계적 지속성을 확인할 수 있습니다.
+            </p>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-6">
+            <div class="flex-1 bg-white rounded-2xl shadow border border-slate-200 overflow-hidden cursor-pointer group" onclick="toggleCard('traditional')">
+                <div class="bg-slate-700 p-4 text-white font-bold flex justify-between items-center">
+                    <span>전통적 선교 (Going to them)</span>
+                    <span class="text-xl">✈️</span>
+                </div>
+                <div id="card-traditional" class="p-6 bg-slate-50 transition-all">
+                    <ul class="space-y-4 text-slate-600">
+                        <li class="flex items-start"><span class="mr-2 text-slate-400">✖️</span> 수만 달러의 막대한 항공료 및 해외 체류 비용 발생</li>
+                        <li class="flex items-start"><span class="mr-2 text-slate-400">✖️</span> 까다로운 비자 제한 및 강제 추방의 위험성</li>
+                        <li class="flex items-start"><span class="mr-2 text-slate-400">✖️</span> 문화적, 언어적 이질감 극복에 수년의 시간 소요</li>
+                        <li class="flex items-start"><span class="mr-2 text-slate-400">✖️</span> 1~2주 단기 사역 후 현지인과의 지속적인 관계 유지의 어려움</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center font-black text-3xl text-slate-300 transform rotate-90 md:rotate-0">➡️</div>
+
+            <div class="flex-1 bg-white rounded-2xl shadow-xl border-2 border-blue-500 overflow-hidden cursor-pointer group" onclick="toggleCard('diaspora')">
+                <div class="bg-blue-600 p-4 text-white font-bold flex justify-between items-center">
+                    <span>디아스포라 선교 (Coming to us)</span>
+                    <span class="text-xl">🤝</span>
+                </div>
+                <div id="card-diaspora" class="p-6 bg-blue-50 transition-all">
+                    <ul class="space-y-4 text-blue-900 font-medium">
+                        <li class="flex items-start"><span class="mr-2 text-blue-500">✔️</span> <strong>선교 비용의 획기적 절감:</strong> 해외 항공료/체류비를 절약하여 실제 난민 직접 후원 및 사역 인프라에 집중 투입</li>
+                        <li class="flex items-start"><span class="mr-2 text-blue-500">✔️</span> <strong>법적 안전성:</strong> 비자 불필요, 종교 및 선교의 자유가 완벽히 보장된 안전지대</li>
+                        <li class="flex items-start"><span class="mr-2 text-blue-500">✔️</span> <strong>매주 상시 선교 연속성:</strong> 1년 1회성 단기 행사를 넘어, 매주 클락스톤 현장을 꾸준히 방문하여 신뢰와 삶을 나누는 고정 사역</li>
+                        <li class="flex items-start"><span class="mr-2 text-blue-500">✔️</span> <strong>장기적 영적 케어:</strong> 수시 방문 심방, 현지 아동 방과 후 멘토링, 카카오톡 상담 등 연속적인 평생 영적 지도 형성</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="strategy" class="scroll-mt-24 bg-white p-8 md:p-12 rounded-3xl shadow-lg border border-slate-100">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-black text-blue-900 mb-4">🚀 3. 클락스톤 선교의 3단계 실행 전략</h2>
+            <div class="w-16 h-1 bg-green-500 mx-auto mb-6"></div>
+            <p class="text-lg text-slate-600 max-w-3xl mx-auto break-keep">
+                본 섹션은 현지 선교 연합체(Joint Church Clarkston Outreach)가 수립한 철저한 관계 중심, 다음 세대 중심, 총체적 사랑 실천의 구체적 방법론을 제시합니다. 각 탭을 클릭하여 행사 일정과 맞춤형 사역의 세부 사항을 탐색해 보십시오.
+            </p>
+        </div>
+
+        <div class="p-4 mb-8 bg-blue-50 border-l-4 border-blue-600 rounded-r-xl text-sm text-slate-700 leading-relaxed">
+            💡 <strong>중요 안내:</strong> 클락스톤 사역은 매년 여름 진행되는 단기 <strong>[집중 선교봉사대]</strong>를 통해 대규모 축제와 신규 영혼 접촉의 문을 활짝 열고, 이후 <strong>[연중 매주 정기 선교]</strong> 사역팀이 지속적으로 방문 관리하여 사랑을 유지하는 가장 완벽한 입체적 선교 모델을 추구합니다.
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-2 mb-8">
+            <button onclick="openTab('step1')" id="btn-step1" class="tab-btn active px-6 py-3 rounded-full font-bold text-white bg-blue-900 shadow transition">1단계: 마음 열기 (축제)</button>
+            <button onclick="openTab('step2')" id="btn-step2" class="tab-btn px-6 py-3 rounded-full font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">2단계: 다음 세대 멘토링</button>
+            <button onclick="openTab('step3')" id="btn-step3" class="tab-btn px-6 py-3 rounded-full font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">3단계: 총체적 필요 채우기</button>
+        </div>
+
+        <div id="content-step1" class="tab-content animate-fade-in">
+            <div class="bg-blue-50 p-8 rounded-2xl">
+                <h3 class="text-2xl font-bold text-blue-800 mb-4">🎉 클락스톤 인터내셔널 페스티벌 (Community Festival)</h3>
+                <p class="font-bold text-slate-700 mb-4">일시: 2026년 6월 29일 월요일 (행사 첫날)</p>
+                <p class="text-slate-600 leading-relaxed break-keep mb-6">
+                    이민 생활의 경계심을 허물기 위해 첫날은 지역 주민 전체를 위한 축제로 시작합니다. "당신들을 환영하고 사랑합니다"라는 메시지를 전할 때, 이슬람권 부모들도 자녀를 안심하고 교회 프로그램에 보내기 시작합니다.
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="bg-white p-4 rounded-xl shadow-sm"><div class="text-3xl mb-2">🥟</div><div class="text-sm font-bold">한국 음식/간식 나눔</div></div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm"><div class="text-3xl mb-2">🎵</div><div class="text-sm font-bold">아름다운 음악 공연</div></div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm"><div class="text-3xl mb-2">✂️</div><div class="text-sm font-bold">무료 이/미용 봉사</div></div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm"><div class="text-3xl mb-2">🎈</div><div class="text-sm font-bold">에어바운스 및 게임</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="content-step2" class="tab-content hidden animate-fade-in">
+            <div class="bg-green-50 p-8 rounded-2xl">
+                <h3 class="text-2xl font-bold text-green-800 mb-4">🌱 다음 세대 집중 돌봄 (Summer Kids & Youth Program)</h3>
+                <p class="font-bold text-slate-700 mb-4">일시: 화요일 ~ 금요일</p>
+                <p class="text-slate-600 leading-relaxed break-keep mb-6">
+                    생계를 위해 온종일 일하는 난민 부모들로 인해 방치되기 쉬운 아이들을 집중 양육하여 영혼 구원과 복음을 선포하는 핵심 사역입니다.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-green-500">
+                        <h4 class="font-bold text-lg mb-2 text-slate-800">초등학생 대상 (오전 09:30 - 11:30)</h4>
+                        <ul class="text-slate-600 space-y-2 text-sm">
+                            <li>• 성경 이야기 (Inspiring Bible Stories)</li>
+                            <li>• 만들기 공예 (Crafts) 및 한국 이름 쓰기</li>
+                            <li>• 찬양과 율동, 학습 튜터링</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-500">
+                        <h4 class="font-bold text-lg mb-2 text-slate-800">중고등학생 대상 (오후 14:00 - 17:00)</h4>
+                        <ul class="text-slate-600 space-y-2 text-sm">
+                            <li>• 방황을 예방하는 신앙 멘토링</li>
+                            <li>• 그룹 스포츠 및 활동적인 게임</li>
+                            <li>• 진로 상담 및 미디어 교실</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="content-step3" class="tab-content hidden animate-fade-in">
+            <div class="bg-yellow-50 p-8 rounded-2xl">
+                <h3 class="text-2xl font-bold text-yellow-800 mb-4">🤝 총체적 사랑과 필요 채우기 (Holistic Ministry)</h3>
+                <p class="text-slate-600 leading-relaxed break-keep mb-6">
+                    예수님께서 영적 진리를 가르치시기 전 질병을 고치시고 굶주림을 해결하셨듯, 난민들의 실제적이고 육적인 필요를 섬세하게 채워줍니다.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <div class="text-3xl mb-3">🦷</div>
+                        <h4 class="font-bold text-lg mb-2 text-slate-800">의료 자원 연계</h4>
+                        <p class="text-slate-600 text-sm">치과 치료 등 전문적인 돌봄이 필요한 가정을 현장에서 선별하여, 무료 치료를 자원하는 의료진(장로님 등)과 안전하게 다리를 놓아줍니다. (환자 보호 규정 철저 준수)</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <div class="text-3xl mb-3">⛺</div>
+                        <h4 class="font-bold text-lg mb-2 text-slate-800">실생활 및 행정 지원</h4>
+                        <p class="text-slate-600 text-sm">행사에 필수적인 대형 천막, 접이식 의자, 스피커, 아이스박스를 동원하고, 무더위를 이길 물과 스낵 스테이션을 상시 운영하여 쾌적한 사역 환경을 조성합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="action" class="scroll-mt-24">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-black text-blue-900 mb-4">🔥 4. 미국 내 교회들을 향한 청원과 결단</h2>
+            <div class="w-16 h-1 bg-green-500 mx-auto mb-6"></div>
+            <p class="text-lg text-slate-600 max-w-3xl mx-auto break-keep">
+                이 문서는 단순한 정보 전달을 넘어 여러분의 행동을 촉구합니다. 선교적 동력을 상실해가는 시대, 클락스톤은 하나님이 주신 거대한 영적 부흥의 기회입니다. 우리 교회와 공동체가 어떻게 동참할 수 있는지 확인하십시오.
+            </p>
+        </div>
+
+        <div class="bg-blue-900 rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
+            <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+                <div class="bg-blue-800 p-6 rounded-2xl border border-blue-700">
+                    <div class="text-4xl mb-4">💰</div>
+                    <h4 class="text-xl font-bold text-yellow-400 mb-3">1. 국내 선교 예산 재배정</h4>
+                    <p class="text-blue-100 text-sm break-keep">해외 이동 예산을 대폭 아껴 실제 난민 정착민의 생활과 매주 진행되는 정기 복음 사역을 장기 지원하기 위한 연중 후원금으로 지정해 주십시오.</p>
+                </div>
+                <div class="bg-blue-800 p-6 rounded-2xl border border-blue-700">
+                    <div class="text-4xl mb-4">👥</div>
+                    <h4 class="text-xl font-bold text-green-400 mb-3">2. 단기 선교팀 및 매주 정기팀 참여</h4>
+                    <p class="text-blue-100 text-sm break-keep">매년 1회 개최되는 여름 집중 선교봉사대(Summer Team) 참가 및 매주 토요일/주중에 가동되는 클락스톤 현지 고정 심방 사역에 자원하여 평생 동역자가 되어주십시오.</p>
+                </div>
+                <div class="bg-blue-800 p-6 rounded-2xl border border-blue-700">
+                    <div class="text-4xl mb-4">🎁</div>
+                    <h4 class="text-xl font-bold text-blue-300 mb-3">3. 장비 및 상시 재정 후원</h4>
+                    <p class="text-blue-100 text-sm break-keep">행사를 위한 일시적 천막/의자 장비 지원을 포함하여, 사역 예산 전체의 재정 누수를 막고 현지 아동 멘토링 간식 공급을 위한 지속적인 물질 기부에 동참해 주십시오.</p>
+                </div>
+            </div>
+
+            <div class="relative z-10 bg-white text-slate-800 p-8 rounded-2xl text-center shadow-xl max-w-2xl mx-auto">
+                <h3 class="text-2xl font-black mb-2">하나님의 선교(Missio Dei)에 동참하십시오</h3>
+                <p class="text-slate-600 mb-6 font-medium text-sm">"인류의 모든 족속을 한 혈통으로 만드사... 사람으로 혹 하나님을 더듬어 찾아 발견하게 하려 하심이로되" (행 17:26-27)</p>
+                
+                <div class="mb-6">
+                    <a href="https://script.google.com/macros/s/AKfycby_dNhJeVP_KrVKtsTVYgSmXoSJbgVIFndfKRNJhfkMwtBaem3HLRcc-maCCj-2xpyUVw/exec" target="_blank" class="inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-500 text-white font-black text-lg py-4 px-8 rounded-2xl shadow-md w-full transition transform hover:-translate-y-0.5 active:translate-y-0">
+                        ✍️ 온라인 참가 및 도네이션 신청서 작성하기
+                    </a>
+                </div>
+
+                <div class="inline-flex flex-col items-center justify-center p-4 bg-slate-50 border border-slate-200 rounded-xl w-full">
+                    <div class="font-bold text-blue-900 mb-1">문의 및 신청: Joint Church Clarkston Outreach</div>
+                    <div class="text-slate-700 font-medium">📞 224-427-9584</div>
+                    <div class="text-slate-700 font-medium">✉️ tochrisyoo@gmail.com</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm">
+    <div class="max-w-6xl mx-auto px-4">
+        <p>© 2026 클락스톤 선교 연대기획팀. All Rights Reserved.</p>
+        <p class="mt-2">본 대시보드는 교회 리더십 및 선교 위원회 공유용으로 제작되었습니다.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const counters = document.querySelectorAll('.counter');
+        
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const decimals = target % 1 !== 0 ? 1 : 0;
+            const speed = 50; 
+            const inc = target / speed;
+            let current = 0;
+            
+            const updateCount = () => {
+                current += inc;
+                if (current < target) {
+                    counter.innerText = current.toFixed(decimals);
+                    setTimeout(updateCount, 40);
+                } else {
+                    counter.innerText = target.toFixed(decimals);
+                }
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                if(entries[0].isIntersecting) {
+                    updateCount();
+                    observer.disconnect();
+                }
+            });
+            observer.observe(counter);
+        });
+
+        const ctx = document.getElementById('regionChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['중동/이슬람권 (약 40%)', '아시아/불교권 (약 35%)', '아프리카 대륙 (약 25%)'],
+                datasets: [{
+                    data: [40, 35, 25],
+                    backgroundColor: [
+                        '#1e3a8a', 
+                        '#10b981', 
+                        '#f59e0b'  
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { family: "'Noto Sans KR', sans-serif" },
+                            padding: 20
+                        }
+                    },
+                    tooltip: {
+                        bodyFont: { family: "'Noto Sans KR', sans-serif" }
+                    }
+                }
+            }
+        });
+    });
+
+    function toggleCard(cardId) {
+        const card = document.getElementById('card-' + cardId);
+        if(card.classList.contains('hidden')) {
+            card.classList.remove('hidden');
+        } else {
+            card.classList.add('hidden');
+        }
+    }
+
+    function openTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(el => {
+            el.classList.add('hidden');
+        });
+        
+        document.querySelectorAll('.tab-btn').forEach(el => {
+            el.classList.remove('bg-blue-900', 'text-white');
+            el.classList.add('bg-slate-100', 'text-slate-600');
+        });
+        
+        document.getElementById('content-' + tabId).classList.remove('hidden');
+        
+        const activeBtn = document.getElementById('btn-' + tabId);
+        activeBtn.classList.remove('bg-slate-100', 'text-slate-600');
+        activeBtn.classList.add('bg-blue-900', 'text-white');
+    }
+</script>
+
+</body>
+</html>
