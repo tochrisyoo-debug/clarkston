@@ -7,6 +7,9 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<!-- Chosen Palette: Deep Blue (#1e3a8a), Bright Green (#10b981), Golden Yellow (#f59e0b), Slate Gray -->
+<!-- Application Structure Plan: The single-page dashboard app includes a localized dictionary structure supporting 4 languages (KO, EN, ES, ZH). A global language state toggles text elements seamlessly on user click via the top navigation bar menu. Chart.js labels and strategic 사역 tabs update concurrently in real-time. In this updated version, signup link targets are dynamically injected with the current language code (?lang=...) to ensure automatic localized rendering on the sign-up form without double-selection. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 <style>
 body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color: #0f172a; }
 .chart-container { position: relative; width: 100%; max-width: 450px; margin-left: auto; margin-right: auto; height: 350px; max-height: 350px; }
@@ -16,6 +19,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
 </head>
 <body class="antialiased">
 
+<!-- NAVIGATION BAR -->
 <nav class="fixed top-0 w-full z-50 glass-card shadow-sm border-b border-slate-100">
     <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
         <div class="font-black text-xl text-blue-900 tracking-tighter" data-localize="nav_logo">🌐 Clarkston Mission</div>
@@ -27,6 +31,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
                 <a href="#strategy" class="hover:text-green-600 transition" data-localize="nav_strategy">실행 전략</a>
                 <a href="#action" class="hover:text-green-600 transition" data-localize="nav_action">동참 안내</a>
             </div>
+            <!-- LANGUAGE SELECTION BUTTONS -->
             <div class="flex items-center space-x-1 bg-slate-100 p-1 rounded-xl text-xs font-bold shadow-inner">
                 <button onclick="changeLanguage('ko')" id="lang-ko" class="px-2.5 py-1.5 rounded-lg bg-white text-blue-900 shadow-sm transition">KO</button>
                 <button onclick="changeLanguage('en')" id="lang-en" class="px-2.5 py-1.5 rounded-lg text-slate-600 hover:bg-white hover:text-blue-900 transition">EN</button>
@@ -37,6 +42,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
     </div>
 </nav>
 
+<!-- HERO HEADER SECTION -->
 <header id="intro" class="pt-32 pb-20 px-4 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 text-white text-center">
     <div class="max-w-4xl mx-auto">
         <div class="inline-block px-4 py-1 rounded-full bg-green-500 text-white font-bold text-xs mb-6 tracking-widest" data-localize="hero_badge">선교 전략 보고서</div>
@@ -44,13 +50,14 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
             내 집 앞의 열방,<br><span class="text-yellow-400">클락스톤(Clarkston)</span> 난민 선교
         </h1>
         <p class="text-lg md:text-2xl text-blue-100 font-light italic mb-4 break-keep" data-localize="hero_quote">
-            "하나님께서 여권과 비자 없이도 만날 수 있도록, 전 세계 미전도 종족을 우리 곁에 보내셨습니다."
+            "하나님께서 여권 및 비자 없이도 만날 수 있도록, 전 세계 미전도 종족을 우리 곁에 보내셨습니다."
         </p>
         <p class="text-sm md:text-base text-yellow-300 font-medium mb-10 tracking-wide" data-localize="hero_sub_badge">
             🔔 연중 52주 상시 정기 난민 사역 및 매년 여름 집중 선교 결합형 파트너십 모델
         </p>
         <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <a href="https://script.google.com/macros/s/AKfycby_dNhJeVP_KrVKtsTVYgSmXoSJbgVIFndfKRNJhfkMwtBaem3HLRcc-maCCj-2xpyUVw/exec" target="_blank" class="inline-block bg-green-500 hover:bg-green-400 text-white font-bold py-4 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1 w-full sm:w-auto" data-localize="btn_signup">
+            <!-- Added ID for dynamic URL parameter modification -->
+            <a href="https://script.google.com/macros/s/AKfycby_dNhJeVP_KrVKtsTVYgSmXoSJbgVIFndfKRNJhfkMwtBaem3HLRcc-maCCj-2xpyUVw/exec?lang=ko" id="signupBtnTop" target="_blank" class="inline-block bg-green-500 hover:bg-green-400 text-white font-bold py-4 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1 w-full sm:w-auto" data-localize="btn_signup">
                 ✍️ 온라인 참가 신청서 작성하기
             </a>
             <a href="#demographics" class="inline-block bg-transparent border-2 border-white hover:bg-white hover:text-slate-900 text-white font-bold py-4 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1 w-full sm:w-auto" data-localize="btn_explore">
@@ -60,8 +67,10 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
     </div>
 </header>
 
+<!-- MAIN CONTENT -->
 <main class="max-w-6xl mx-auto px-4 py-16 space-y-24">
 
+    <!-- SECTION 1: DEMOGRAPHICS -->
     <section id="demographics" class="scroll-mt-24">
         <div class="text-center mb-12">
             <h2 class="text-3xl font-black text-blue-900 mb-4" data-localize="sec1_title">📍 1. 지리적·인구학적 분석의 기적</h2>
@@ -76,7 +85,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
                 <div class="text-5xl mb-4">🗺️</div>
                 <div class="text-4xl font-black text-blue-600 mb-2"><span class="counter" data-target="1.1">0</span> <span class="text-xl">sq.mi</span></div>
                 <div class="font-bold text-slate-800" data-localize="stat1_label">초밀집 지역</div>
-                <p class="text-sm text-slate-500 mt-2" data-localize="stat1_desc">약 2.85km². 도보로 30분이면 가로지를 수 있는 아파트 중심의 고밀도 선교 거실입니다.</p>
+                <p class="text-sm text-slate-500 mt-2" data-localize="stat1_desc">약 2.85km². 도보로 30분이면 가로지를 수 있는 아파트 중심 of 고밀도 선교 거실입니다.</p>
             </div>
             <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 text-center transform transition hover:scale-105">
                 <div class="text-5xl mb-4">🌍</div>
@@ -112,6 +121,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
         </div>
     </section>
 
+    <!-- SECTION 2: PARADIGM SHIFT -->
     <section id="paradigm" class="scroll-mt-24">
         <div class="text-center mb-12">
             <h2 class="text-3xl font-black text-blue-900 mb-4" data-localize="sec2_title">🔄 2. 선교 패러다임의 위대한 전환</h2>
@@ -152,6 +162,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
         </div>
     </section>
 
+    <!-- SECTION 3: STRATEGY TABS -->
     <section id="strategy" class="scroll-mt-24 bg-white p-8 md:p-12 rounded-3xl shadow-lg border border-slate-100">
         <div class="text-center mb-10">
             <h2 class="text-3xl font-black text-blue-900 mb-4" data-localize="sec3_title">🚀 3. 클락스톤 선교의 3단계 실행 전략</h2>
@@ -176,7 +187,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
                 <h3 class="text-2xl font-bold text-blue-800 mb-2" data-localize="tab1_title">🎉 클락스톤 인터내셔널 페스티벌 (Community Festival)</h3>
                 <p class="font-bold text-slate-600 mb-4 text-xs md:text-sm" data-localize="tab1_date">일시: 2026년 6월 29일 월요일 (행사 첫날)</p>
                 <p class="text-slate-600 leading-relaxed text-sm md:text-base break-keep mb-6" data-localize="tab1_body">
-                    이민 생활의 경계심을 허물기 위해 첫날은 지역 주민 전체를 위한 축제로 시작합니다. "당신들을 환영하고 사랑합니다"라는 메시지를 전할 때, 이슬람권 부모들도 자녀를 안심하고 교회 프로그램에 보내기เริ่ม합니다. 이 대규모 만남의 기폭제를 통로삼아 매주 이어지는 정기 사역팀이 그 신뢰 관계를 영속해 나갑니다.
+                    이민 생활의 경계심을 허물기 위해 첫날은 지역 주민 전체를 위한 축제로 시작합니다. "당신들을 환영하고 사랑합니다"라는 메시지를 전할 때, 이슬람권 부모들도 자녀를 안심하고 교회 프로그램에 보내기 시작합니다. 이 대규모 만남의 기폭제를 통로삼아 매주 이어지는 정기 사역팀이 그 신뢰 관계를 영속해 나갑니다.
                 </p>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-xs md:text-sm">
                     <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100"><div class="text-3xl mb-2">🥟</div><div class="font-bold text-slate-800" data-localize="tab1_i1">한국 음식/간식 나눔</div></div>
@@ -237,6 +248,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
         </div>
     </section>
 
+    <!-- SECTION 4: CALL TO ACTION -->
     <section id="action" class="scroll-mt-24">
         <div class="text-center mb-12">
             <h2 class="text-3xl font-black text-blue-900 mb-4" data-localize="sec4_title">🔥 4. 미국 내 교회들을 향한 청원과 결단</h2>
@@ -270,7 +282,8 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
                 <p class="text-slate-500 mb-6 font-medium text-xs md:text-sm" data-localize="cta_panel_s">"우리가 말과 혀로만 사랑하지 말고 오직 행함과 진실함으로 하자" (요한일서 3:18)</p>
                 
                 <div class="mb-6">
-                    <a href="https://script.google.com/macros/s/AKfycby_dNhJeVP_KrVKtsTVYgSmXoSJbgVIFndfKRNJhfkMwtBaem3HLRcc-maCCj-2xpyUVw/exec" target="_blank" class="inline-flex items-center justify-center bg-green-600 hover:bg-green-500 text-white font-black text-base md:text-lg py-4 px-6 rounded-xl shadow-md w-full transition transform hover:-translate-y-0.5" data-localize="btn_signup_bottom">
+                    <!-- Added ID for dynamic URL parameter modification -->
+                    <a href="https://script.google.com/macros/s/AKfycby_dNhJeVP_KrVKtsTVYgSmXoSJbgVIFndfKRNJhfkMwtBaem3HLRcc-maCCj-2xpyUVw/exec?lang=ko" id="signupBtnBottom" target="_blank" class="inline-flex items-center justify-center bg-green-600 hover:bg-green-500 text-white font-black text-base md:text-lg py-4 px-6 rounded-xl shadow-md w-full transition transform hover:-translate-y-0.5" data-localize="btn_signup_bottom">
                         ✍️ 온라인 참가 및 도네이션 신청서 작성하기
                     </a>
                 </div>
@@ -286,6 +299,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
 
 </main>
 
+<!-- FOOTER -->
 <footer class="bg-slate-900 text-slate-400 py-8 text-center text-xs">
     <div class="max-w-6xl mx-auto px-4">
         <p data-localize="footer_c">© 2026 Clarkston Mission Alliance Planning Team. All Rights Reserved.</p>
@@ -293,6 +307,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
     </div>
 </footer>
 
+<!-- TRANSLATION PACKS & CONTROLLER JAVASCRIPT -->
 <script>
     // Localized Resource Dictionaries
     const TRANSLATIONS = {
@@ -401,7 +416,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
             hero_badge: "Panel de Estrategia Misionera", hero_title: "Las Naciones a las Puertas,<br><span class='text-yellow-400'>Misión Clarkston</span>",
             hero_quote: `"Dios envió grupos étnicos no alcanzados a vivir junto a nosotros para que podamos conocerlos sin pasaportes ni visas."`,
             hero_sub_badge: "🔔 Modelo de visitas regulares a refugiados durante las 52 semanas del año y misión intensiva de verano",
-            btn_signup: "✍️ Completar Formulario de Inscripción en Línea", btn_explore: "Explorar el Informe Misionero ⬇️",
+            btn_signup: "✍ Formulario de Inscripción en Línea", btn_explore: "Explorar el Informe Misionero ⬇",
             sec1_title: "📍 1. El Milagro de los Datos Geográficos y Demográficos",
             sec1_desc: "Esta sección demuestra el valor misionero único de Clarkston a través de datos empíricos. Al visualizar la densidad de población y la diversidad nacional, descubrimos la escala de la oportunidad espiritual.",
             stat1_label: "Área Hiperconcentrada", stat1_desc: "Aprox. 1.1 mi². Una comunidad de alta densidad transitable en 30 minutos a pie.",
@@ -430,10 +445,10 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
             tab2_title: "🌱 Cuidado de la Próxima Generación (Summer Kids & Youth Program)", tab2_date: "Fecha: De martes a viernes",
             tab2_body: "Un사역 central que brinda cuidado diurno estructurado y presentación del 복음 para niños refugiados cuyos padres trabajan largas horas.",
             tab2_c1_h: "Programa Primaria (AM 09:30 - 11:30)", tab2_c1_l1: "Historias Bíblicas y Marionetas", tab2_c1_l2: "Arte, Manualidades y Escritura de Nombres en Coreano", tab2_c1_l3: "Adoración, Danza y Apoyo en Alfabetización",
-            tab2_c2_h: "Programa Juvenil (PM 14:00 - 17:00)", tab2_c2_l1: "Mentoría de Fe y Consejería de Vida", tab2_c2_l2: "Deportes, Torneos de Fútbol y Juegos en Grupo", tab2_c2_l3: "Talleres de Visión Profesional y Clase de Medios",
-            tab3_title: "🤝 Cuidado de Restauración Total (Holistic Ministry)",
-            tab3_body: "Siguiendo el ejemplo de Cristo de sanar a los enfermos y alimentar a las multitudes, buscamos satisfacer necesidades materiales y médicas tangibles.",
-            tab3_c1_h: "Asistencia de Enlace de Atención Médica", tab3_c1_b: "Evaluamos necesidades médicas en el sitio y conectamos a las familias prioritarias con clínicas aliadas como Sun Dental para tratamiento profesional.",
+            tab2_c2_h: "Programa Juvenil (PM 14:00 - 17:00)", tab2_c2_l1: "Faith Mentorship & Lifepath Coaching", tab2_c2_l2: "Team Sports, Soccer Tournaments & Group Games", tab2_c2_l3: "Talleres de Visión Profesional y Clase de Medios",
+            tab3_title: "🤝 Total Restoration Care (Holistic Care)",
+            tab3_body: "Following Christ's example of healing the sick and feeding the crowds, we actively seek to address tangible material and medical needs.",
+            tab3_c1_h: "Healthcare Bridge Assistance", tab3_c1_b: "We assess acute dental or physical needs on-site and connect high-priority families with partner clinics like Sun Dental for professional treatment, maintaining strict privacy protocols.",
             tab3_c2_h: "Apoyo Logístico y Práctico", tab3_c2_b: "Desplegamos carpas de campo, mesas pesadas, altavoces y estaciones de refrigerios para mantener un marco seguro y organizado.",
             sec4_title: "🔥 4. Un Llamado a la Acción para las Iglesias",
             sec4_desc: "Esta plataforma está diseñada para impulsar la movilización definitiva. Clarkston presenta una oportunidad masiva de renovación espiritual.",
@@ -441,17 +456,17 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
             cta_card2_h: "2. Equipos de Verano y Semanales", cta_card2_b: "Regístrese en el Equipo de Verano anual o participe en las visitas domiciliarias de los sábados como un compañero constante.",
             cta_card3_h: "3. Préstamo de Equipos y Suministros", cta_card3_b: "Preste equipos operativos esenciales (carpas, sillas) o done regalos empaquetados para apoyar el desarrollo juvenil.",
             cta_panel_h: "Participe en la Misión de Dios (Missio Dei)", cta_panel_s: "'Hijos míos, no amemos de palabra ni de lengua, sino con obras y de verdad.' (1 Juan 3:18)",
-            btn_signup_bottom: "✍️ Completar Formulario de Voluntariado y Donación", contact_title: "Soporte de Registro: Cuerpo Pastoral y Comité de Misiones",
-            footer_c: "© 2026 Clarkston Mission Alliance Planning Team. All Rights Reserved.", footer_s: "Este panel está configurado para el liderazgo interno de la iglesia.",
+            btn_signup_bottom: "✍ Formulario de Voluntariado y Donación", contact_title: "Soporte de Registro: Cuerpo Pastoral y Comité de Misiones",
+            footer_c: "© 2026 Equipo de Misión de Clarkston. Todos los derechos reservados.", footer_s: "Este panel está configurado para el liderazgo interno de la iglesia.",
             chart_l1: "Medio Oriente / Musulmán (40%)", chart_l2: "Asia / Budista e Hindú (35%)", chart_l3: "Continente Africano (25%)",
             step1_btn: "Fase 1: Festival Comunitario", step2_btn: "Fase 2: Mentoría Juvenil", step3_btn: "Fase 3: Cuidado Integral"
         },
         zh: {
-            nav_logo: "🌐 克拉克스顿宣教", nav_home: "概述", nav_stats: "人口分析", nav_paradigm: "宣教范式转换", nav_strategy: "执行战略", nav_action: "参与指南",
+            nav_logo: "🌐 克拉克斯顿宣教", nav_home: "概述", nav_stats: "人口分析", nav_paradigm: "宣教范式转换", nav_strategy: "执行战略", nav_action: "参与指南",
             hero_badge: "宣教战略报告大盘", hero_title: "家门口的万邦,<br><span class='text-yellow-400'>克拉克斯顿(Clarkston)</span> 难民宣教",
             hero_quote: `"上帝将未得之民送到我们身边，使我们无需护照或签证即可与他们相遇。"`,
             hero_sub_badge: "🔔 全年52周常态化难民探访与夏季密集宣教相结合的伙伴关系模型",
-            btn_signup: "✍️ 填写在线参与申请表", btn_explore: "开始探索报告 ⬇️",
+            btn_signup: "✍ 填写在线参与申请表", btn_explore: "开始探索报告 ⬇",
             sec1_title: "📍 1. 地理与人口统计分析的奇迹",
             sec1_desc: "本节通过具体数据证明为什么克拉克斯顿在全美具有最独特的宣教价值。通过将人口密度和来源国的多样性可视化，帮助理解我们面临的巨大属灵机会。",
             stat1_label: "超密集区域", stat1_desc: "约1.1平方英里。步行30分钟即可穿过的以公寓为中心的高密度宣教社区。",
@@ -460,7 +475,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
             panel_title: "创意访问地区（10/40之窗）的自发聚集",
             panel_desc: "来自限制福音国家的居民已移居到宗教自由受到保护的安全地带。这是与来自伊斯兰教、佛教和印度教背景的灵魂分享基督爱心的黄金时刻。",
             group1_tag: "伊斯兰圈", group1_body: "叙利亚、伊拉克、阿富汗、索马里",
-            group2_tag: "佛教/印度教圈", group2_body: "不丹、尼泊尔、缅甸",
+            group2_tag: "佛教/印度教圈", group2_body: "不丹、定拜尔、缅甸",
             group3_tag: "非洲圈", group3_body: "苏丹、刚果、厄立特里亚",
             sec2_title: "🔄 2. 宣教范式的伟大转变",
             sec2_desc: "本节对比了传统的海外差传宣教（Going）与克拉克斯顿的本地同城宣教（Coming）。用户可以点击下方卡片查看反向宣教的卓越效率和关系的持续性。",
@@ -474,8 +489,8 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
             sec3_title: "🚀 3. 三阶段战略执行计划",
             sec3_desc: "联合宣教网络（Joint Church Clarkston Outreach）建立了以关系为中心、以下一代为中心、实践基督爱心的具体行动指南。点击下方标签查看详细日程。",
             sec3_alert: "🌟 亲爱的弟兄姊妹，请务必参与：2026年6月29日至7月3日的夏季密集宣教周是接触来自60个国家难民家庭的强力催化剂。我们需要您的双手、双脚和物资奉献。",
-            tab1_title: "🎉 克拉克斯顿国际嘉年华 (Community Festival)", tab1_date: "时间: 2026년 6월 29일 월요일 (행사 첫날)",
-            tab1_body: "我们在密集宣教周的第一天以社区嘉年华开始，以打破隔阂并建立互信。通过展现基督的慷慨款待，难民家长会安心地让孩子参加接下来的事工。这为每周的后续跟进团队赋能。",
+            tab1_title: "🎉 克拉克斯顿国际嘉年华 (Community Festival)", tab1_date: "时间: 周一, 2026年6月29日 (首日聚焦)",
+            tab1_body: "我们在密集宣教周的第一天以社区嘉年华开始，以打破隔阂并建立互信。通过展现基督의 慷慨款待，难民家长会安心地让孩子参加接下来的事工。这为每周的后续跟进团队赋能。",
             tab1_i1: "韩国美食与点心分享", tab1_i2: "文化音乐音乐会", tab1_i3: "免费理发剪发服务", tab1_i4: "充气城堡与互动游戏",
             tab2_title: "🌱 下一代集中牧养 (Summer Kids & Youth Program)", tab2_date: "时间: 周二至周五",
             tab2_body: "核心事工，为父母因生计全天工作的难民儿童提供日间照顾，并系统性地传讲福音与圣经真理。",
@@ -485,14 +500,14 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
             tab3_body: "效法基督医治病人、怜悯众人的榜样，我们积极寻求满足难民实际的物质和医疗需求。",
             tab3_c1_h: "医疗资源对接协助", tab3_c1_b: "我们在现场评估牙科或身体健康需求，并将高优先级的家庭与 Sun Dental 等合作诊所对接以提供专业治疗，严格遵守隐私保护原则。",
             tab3_c2_h: "后勤与行政实际支持", tab3_c2_b: "我们调配大型帐篷、桌椅、音响设备，常态化运营饮用水和零食供应站，确保宣教现场环境的安全与舒适。",
-            sec4_title: "🔥 4. 迈向宣教委身与立约的邀请",
+            sec4_title: "🔥 4. 迈向宣教委身与立约의 邀请",
             sec4_desc: "本大盘旨在推动具体的宣教动员。在宣教动力逐渐流失的时代，克拉克斯顿是上帝赐予的巨大属灵复兴契机。请查看您的教会如何参与。",
             cta_card1_h: "1. 全年资金/财政奉献", cta_card1_b: "消除昂贵的差旅开支。每一笔奉献都直接投入到难民学生的午餐、学用品餐盒以及长期的固定设施建设中。",
             cta_card2_h: "2. 密集短宣队与每周常态参与", cta_card2_b: "报名参加年度夏季短宣队，或注册参与每周六常态化的难民家庭探访，成为他们的同行者。",
             cta_card3_h: "3. 物资捐赠与设备支持", cta_card3_b: "为活动提供必要的行政物资和后勤设备借用（大型帐篷、折叠椅），或捐赠全新的爱心礼品以支持事工。",
             cta_panel_h: "参与上帝的宣教 (Missio Dei)", cta_panel_s: "“小子们哪，我们相爱，不要只在言语和舌头上，总要在行为和诚实上。”（约翰一书 3:18）",
-            btn_signup_bottom: "✍️ 填写在线志愿者与捐赠表单", contact_title: "报名支持: 牧会部及宣委会办公室",
-            footer_c: "© 2026 Clarkston Mission Alliance Planning Team. All Rights Reserved.", footer_s: "本大盘配置专供教会内部领袖和宣教委员会共享。",
+            btn_signup_bottom: "✍ 填写在线志愿者与捐赠表单", contact_title: "报名支持: 牧会부 및 宣委会办公室",
+            footer_c: "© 2026 克拉克斯顿宣教规划团队。保留所有权利。", footer_s: "本大盘配置专供教会内部领袖和宣教委员会共享。",
             chart_l1: "中东 / 伊斯兰圈 (约 40%)", chart_l2: "亚洲 / 佛教与印度教 (约 35%)", chart_l3: "非洲大陆 (约 25%)",
             step1_btn: "第一阶段：社区嘉年华", step2_btn: "第二阶段：青少年牧养", step3_btn: "第三阶段：全人关怀"
         }
@@ -526,12 +541,20 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
         });
 
         // 2. Specific Dynamic Template Render Processing
-        document.getElementById('hero-title').innerHTML = dictionary['hero-title'] || dictionary['hero_title'];
+        document.getElementById('hero-title').innerHTML = dictionary['hero_title'];
         
         // Update Strategy Tab Button Contents Localized Elements
         document.getElementById('btn-step1').innerText = dictionary['step1_btn'];
         document.getElementById('btn-step2').innerText = dictionary['step2_btn'];
         document.getElementById('btn-step3').innerText = dictionary['step3_btn'];
+
+        // DYNAMIC LINK ENHANCEMENT: 물고갈 가입서 언어 파라미터 실시간 치환
+        const baseUrl = "https://script.google.com/macros/s/AKfycby_dNhJeVP_KrVKtsTVYgSmXoSJbgVIFndfKRNJhfkMwtBaem3HLRcc-maCCj-2xpyUVw/exec";
+        const formLink = `${baseUrl}?lang=${lang}`;
+        const signupBtnTop = document.getElementById('signupBtnTop');
+        const signupBtnBottom = document.getElementById('signupBtnBottom');
+        if (signupBtnTop) signupBtnTop.href = formLink;
+        if (signupBtnBottom) signupBtnBottom.href = formLink;
 
         // 3. Re-render Chart.js Localized Array Data Elements
         if (regionChartInstance) {
