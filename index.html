@@ -85,7 +85,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
                 <div class="text-5xl mb-4">🗺️</div>
                 <div class="text-4xl font-black text-blue-600 mb-2"><span class="counter" data-target="1.1">0</span> <span class="text-xl">sq.mi</span></div>
                 <div class="font-bold text-slate-800" data-localize="stat1_label">초밀집 지역</div>
-                <p class="text-sm text-slate-500 mt-2" data-localize="stat1_desc">약 2.85km². 도보로 30분이면 가로지를 수 있는 아파트 중심 of 고밀도 선교 거실입니다.</p>
+                <p class="text-sm text-slate-500 mt-2" data-localize="stat1_desc">약 2.85km². 도보로 30분이면 가로지를 수 있는 아파트 중심의 고밀도 선교 거실입니다.</p>
             </div>
             <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 text-center transform transition hover:scale-105">
                 <div class="text-5xl mb-4">🌍</div>
@@ -177,9 +177,9 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
         </div>
 
         <div class="flex flex-wrap justify-center gap-2 mb-8" id="tab-buttons-container">
-            <button onclick="openTab('step1')" id="btn-step1" class="tab-btn px-5 py-2.5 rounded-full font-bold text-white bg-blue-900 shadow transition text-xs md:text-sm">1단계</button>
-            <button onclick="openTab('step2')" id="btn-step2" class="tab-btn px-5 py-2.5 rounded-full font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 transition text-xs md:text-sm">2단계</button>
-            <button onclick="openTab('step3')" id="btn-step3" class="tab-btn px-5 py-2.5 rounded-full font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 transition text-xs md:text-sm">3단계</button>
+            <button onclick="openTab('step1')" id="btn-step1" class="tab-btn px-5 py-2.5 rounded-full font-bold text-white bg-blue-900 shadow transition text-xs md:text-sm" data-localize="step1_btn">1단계: 마음 문 열기</button>
+            <button onclick="openTab('step2')" id="btn-step2" class="tab-btn px-5 py-2.5 rounded-full font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 transition text-xs md:text-sm" data-localize="step2_btn">2단계: 다음세대 사역</button>
+            <button onclick="openTab('step3')" id="btn-step3" class="tab-btn px-5 py-2.5 rounded-full font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 transition text-xs md:text-sm" data-localize="step3_btn">3단계: 필요 채우기</button>
         </div>
 
         <div id="content-step1" class="tab-content animate-fade-in">
@@ -393,7 +393,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
             tab1_body: "We begin the intensive week with a community-wide festival to break down relational barriers and build mutual trust. By demonstrating radical hospitality, refugee parents open up and welcome our teams to tutor their children. This launchpad directly empowers the weekly follow-up teams.",
             tab1_i1: "K-Food & Snack Sharing", tab1_i2: "Cultural Music Concert", tab1_i3: "Free Haircut Services", tab1_i4: "Bounce Houses & Games",
             tab2_title: "🌱 Next-Generation Care (Summer Kids & Youth Program)", tab2_date: "Date: Tuesday through Friday",
-            tab2_body: "An essential core 사역 providing structured daytime care and gospel presentation for refugee children whose parents work long hours to build a living.",
+            tab2_body: "An essential core ministry providing structured daytime care and gospel presentation for refugee children whose parents work long hours to build a living.",
             tab2_c1_h: "Elementary Program (AM 09:30 - 11:30)", tab2_c1_l1: "Inspiring Bible Stories & Puppetry", tab2_c1_l2: "Arts, Crafts, and Korean Name Writing", tab2_c1_l3: "Worship, Dance, and Core Literacy Support",
             tab2_c2_h: "Youth Program (PM 14:00 - 17:00)", tab2_c2_l1: "Faith Mentorship & Lifepath Coaching", tab2_c2_l2: "Team Sports, Soccer Tournaments & Group Games", tab2_c2_l3: "Career Vision Workshops & Media Literacy Class",
             tab3_title: "🤝 Total Restoration Care (Holistic Ministry)",
@@ -406,7 +406,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
             cta_card2_h: "2. Intensive Summer and Weekly Teams", cta_card2_b: "Sign up for the annual Summer Team or register to participate in the weekly Saturday neighborhood home visitations as a lifelong companion.",
             cta_card3_h: "3. Equipment Loans & Supply Donations", cta_card3_b: "Loan essential operational equipment (canopies, chairs) or donate packaged gifts to support refugee youth development programs.",
             cta_panel_h: "Partner in the Mission of God (Missio Dei)", cta_panel_s: "'Dear children, let us not love with words or speech but with actions and in truth.' (1 John 3:18)",
-            btn_signup_bottom: "✍️ Complete Online Volunteer & Donation Form", contact_title: "Registration Support: Pastoral & Missions Committee",
+            btn_signup_bottom: "✍ Complete Online Volunteer & Donation Form", contact_title: "Registration Support: Pastoral & Missions Committee",
             footer_c: "© 2026 Clarkston Mission Alliance Planning Team. All Rights Reserved.", footer_s: "This strategic dashboard is configured for internal church leadership and mission boards.",
             chart_l1: "Middle East / Muslim (40%)", chart_l2: "Asia / Buddhist & Hindu (35%)", chart_l3: "African Continent (25%)",
             step1_btn: "Phase 1: Festival Outreach", step2_btn: "Phase 2: Youth Mentorship", step3_btn: "Phase 3: Holistic Care"
@@ -443,9 +443,9 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
             tab1_body: "Comenzamos la semana con un festival comunitario para derribar barreras relacionales y construir confianza mutua. Al mostrar hospitalidad radical, los padres refugiados abren sus puertas para que nuestro equipo instruya a sus hijos.",
             tab1_i1: "Distribución de Comida K-Food", tab1_i2: "Concierto de Música Cultural", tab1_i3: "Servicios de Corte de Cabello", tab1_i4: "Castillos Inflables y Juegos",
             tab2_title: "🌱 Cuidado de la Próxima Generación (Summer Kids & Youth Program)", tab2_date: "Fecha: De martes a viernes",
-            tab2_body: "Un사역 central que brinda cuidado diurno estructurado y presentación del 복음 para niños refugiados cuyos padres trabajan largas horas.",
+            tab2_body: "Un saryco central que brinda cuidado diurno estruturado y presentación del evangelio para niños refugiados cuyos padres trabajan largas horas.",
             tab2_c1_h: "Programa Primaria (AM 09:30 - 11:30)", tab2_c1_l1: "Historias Bíblicas y Marionetas", tab2_c1_l2: "Arte, Manualidades y Escritura de Nombres en Coreano", tab2_c1_l3: "Adoración, Danza y Apoyo en Alfabetización",
-            tab2_c2_h: "Programa Juvenil (PM 14:00 - 17:00)", tab2_c2_l1: "Faith Mentorship & Lifepath Coaching", tab2_c2_l2: "Team Sports, Soccer Tournaments & Group Games", tab2_c2_l3: "Talleres de Visión Profesional y Clase de Medios",
+            tab2_c2_h: "Programa Juvenil (PM 14:00 - 17:00)", tab2_c2_l1: "Faith Mentorship & Lifepath Coaching", tab2_c2_l2: "Team Sports, Soccer Tournaments & Group Games", tab2_c2_l3: "Career Vision Workshops & Media Literacy Class",
             tab3_title: "🤝 Total Restoration Care (Holistic Care)",
             tab3_body: "Following Christ's example of healing the sick and feeding the crowds, we actively seek to address tangible material and medical needs.",
             tab3_c1_h: "Healthcare Bridge Assistance", tab3_c1_b: "We assess acute dental or physical needs on-site and connect high-priority families with partner clinics like Sun Dental for professional treatment, maintaining strict privacy protocols.",
@@ -467,17 +467,17 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
             hero_quote: `"上帝将未得之民送到我们身边，使我们无需护照或签证即可与他们相遇。"`,
             hero_sub_badge: "🔔 全年52周常态化难民探访与夏季密集宣教相结合的伙伴关系模型",
             btn_signup: "✍ 填写在线参与申请表", btn_explore: "开始探索报告 ⬇",
-            sec1_title: "📍 1. 地理与人口统计分析的奇迹",
+            sec1_title: "📍 1. 地理与人口统计分析의 奇迹",
             sec1_desc: "本节通过具体数据证明为什么克拉克斯顿在全美具有最独特的宣教价值。通过将人口密度和来源国的多样性可视化，帮助理解我们面临的巨大属灵机会。",
             stat1_label: "超密集区域", stat1_desc: "约1.1平方英里。步行30分钟即可穿过的以公寓为中心的高密度宣教社区。",
-            stat2_label: "60多个国家", stat2_desc: "来自10/40之窗的未得之民聚集于此，包括叙利亚、阿富汗和索马里等国。",
+            stat2_label: "60多个国家", stat2_desc: "来自10/40之窗的未得之民聚集于此，包括叙利亚、阿富汗和专麦尔等国。",
             stat3_label: "110多种语言", stat3_desc: "美国文化多样性最高的平方英里，被称为'南方的埃利斯岛'。",
             panel_title: "创意访问地区（10/40之窗）的自发聚集",
             panel_desc: "来自限制福音国家的居民已移居到宗教自由受到保护的安全地带。这是与来自伊斯兰教、佛教和印度教背景的灵魂分享基督爱心的黄金时刻。",
             group1_tag: "伊斯兰圈", group1_body: "叙利亚、伊拉克、阿富汗、索马里",
-            group2_tag: "佛教/印度教圈", group2_body: "不丹、定拜尔、缅甸",
+            group2_tag: "佛教/印度教圈", group2_body: "不丹、尼泊尔、缅甸",
             group3_tag: "非洲圈", group3_body: "苏丹、刚果、厄立特里亚",
-            sec2_title: "🔄 2. 宣教范式的伟大转变",
+            sec2_title: "🔄 2. 宣教范式的伟大转换",
             sec2_desc: "本节对比了传统的海外差传宣教（Going）与克拉克斯顿的本地同城宣教（Coming）。用户可以点击下方卡片查看反向宣教的卓越效率和关系的持续性。",
             card1_header: "传统宣教 (Going to them)",
             card1_li1: "每次短宣需要数万美金的巨额机票和食宿交通开支。", card1_li2: "面临严格的签证限制以及被强制驱逐出境的风险。", card1_li3: "需要数年的本地文化和语言适应才能建立深层联系。", card1_li4: "1-2周的短暂服事后，往往立即与当地人失去长期的联系。",
@@ -485,7 +485,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
             card2_li1: "宣教资金的高效集中：节省国际交通开支，将100%的资源直接投入到本地难民的救济和事工发展中。",
             card2_li2: "每周常态宣教的连续性：超越为期1周的夏季活动，在全年的每个礼拜六进行常规的探访和关怀。",
             card2_li3: "跨文化训练场：为神学生和教会信徒提供学习实际跨文化宣教的理想操作实验室。",
-            card2_li4: "属灵的持续性：通过定期的家庭探访、学术辅导和数字化沟通，建立长期的导师关系。",
+            card2_li4: "属灵의 持续性：通过定期的家庭探访、学术辅导和数字化沟通，建立长期的导师关系。",
             sec3_title: "🚀 3. 三阶段战略执行计划",
             sec3_desc: "联合宣教网络（Joint Church Clarkston Outreach）建立了以关系为中心、以下一代为中心、实践基督爱心的具体行动指南。点击下方标签查看详细日程。",
             sec3_alert: "🌟 亲爱的弟兄姊妹，请务必参与：2026年6月29日至7月3日的夏季密集宣教周是接触来自60个国家难民家庭的强力催化剂。我们需要您的双手、双脚和物资奉献。",
@@ -502,13 +502,13 @@ body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color
             tab3_c2_h: "后勤与行政实际支持", tab3_c2_b: "我们调配大型帐篷、桌椅、音响设备，常态化运营饮用水和零食供应站，确保宣教现场环境的安全与舒适。",
             sec4_title: "🔥 4. 迈向宣教委身与立约의 邀请",
             sec4_desc: "本大盘旨在推动具体的宣教动员。在宣教动力逐渐流失的时代，克拉克斯顿是上帝赐予的巨大属灵复兴契机。请查看您的教会如何参与。",
-            cta_card1_h: "1. 全年资金/财政奉献", cta_card1_b: "消除昂贵的差旅开支。每一笔奉献都直接投入到难民学生的午餐、学用品餐盒以及长期的固定设施建设中。",
+            cta_card1_h: "1. 全년 资金/财政奉献", cta_card1_b: "消除昂贵的差旅开支。每一笔奉献都直接投入到难民学生的午餐、学用品餐盒以及长期的固定设施建设中。",
             cta_card2_h: "2. 密集短宣队与每周常态参与", cta_card2_b: "报名参加年度夏季短宣队，或注册参与每周六常态化的难民家庭探访，成为他们的同行者。",
             cta_card3_h: "3. 物资捐赠与设备支持", cta_card3_b: "为活动提供必要的行政物资和后勤设备借用（大型帐篷、折叠椅），或捐赠全新的爱心礼品以支持事工。",
             cta_panel_h: "参与上帝的宣教 (Missio Dei)", cta_panel_s: "“小子们哪，我们相爱，不要只在言语和舌头上，总要在行为和诚实上。”（约翰一书 3:18）",
             btn_signup_bottom: "✍ 填写在线志愿者与捐赠表单", contact_title: "报名支持: 牧会부 및 宣委会办公室",
-            footer_c: "© 2026 克拉克斯顿宣教规划团队。保留所有权利。", footer_s: "本大盘配置专供教会内部领袖和宣教委员会共享。",
-            chart_l1: "中东 / 伊斯兰圈 (约 40%)", chart_l2: "亚洲 / 佛教与印度教 (约 35%)", chart_l3: "非洲大陆 (约 25%)",
+            footer_c: "© 2026 克라克斯顿宣教规划团队。保留所有权利。", footer_s: "本大盘配置专供教会内部领袖和宣教委员会共享。",
+            chart_l1: "中东 / 伊스람圈 (约 40%)", chart_l2: "亚洲 / 佛教与印度教 (约 35%)", chart_l3: "非洲大陆 (约 25%)",
             step1_btn: "第一阶段：社区嘉年华", step2_btn: "第二阶段：青少年牧养", step3_btn: "第三阶段：全人关怀"
         }
     };
